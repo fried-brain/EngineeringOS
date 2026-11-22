@@ -1,4 +1,9 @@
 """Vercel ASGI entrypoint for the EngineeringOS MCP server."""
+import sys
+from pathlib import Path
+
+# Vercel does not add this src-layout to sys.path automatically.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from mcp.server import MCPServer
 from mcp.server.transport_security import TransportSecuritySettings
 from starlette.requests import Request
