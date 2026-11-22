@@ -8,8 +8,8 @@ version = "0.1.0"
 description = "Engineering role mastery toolkit and MCP server"
 readme = "README.md"
 requires-python = ">=3.11"
-license = {text = "MIT"}
-dependencies = ["mcp>=1.2.0"]
+license = "MIT"
+dependencies = ["mcp>=2.0,<3"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0", "ruff>=0.6"]
