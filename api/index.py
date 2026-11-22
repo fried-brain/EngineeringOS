@@ -1,11 +1,11 @@
 """Vercel ASGI entrypoint for the EngineeringOS MCP server."""
-from mcp.server.fastmcp import FastMCP
+from mcp.server import MCPServer
 from mcp.server.transport_security import TransportSecuritySettings
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 from engineeringos.catalog import load_catalog, search_roles, get_role, build_learning_path
 
-mcp = FastMCP("EngineeringOS")
+mcp = MCPServer("EngineeringOS")
 
 @mcp.tool()
 def list_domains() -> list[str]:
