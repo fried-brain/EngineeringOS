@@ -1,0 +1,3 @@
+# Contributing
+
+Open an issue before large changes. New roles need stable kebab-case IDs, mission, competencies, learning sequence and an observable capstone. Prefer official documentation, standards and peer-reviewed sources; record source URLs and review dates. Keep examples safe, reproducible and accessible to modest hardware. Add tests. Never commit secrets, personal data or unlicensed course content.
