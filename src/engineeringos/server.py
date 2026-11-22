@@ -1,8 +1,8 @@
 """EngineeringOS MCP server."""
 import os
-from mcp.server.fastmcp import FastMCP
+from mcp.server import MCPServer
 from engineeringos.catalog import load_catalog, search_roles, get_role, build_learning_path
-mcp = FastMCP("EngineeringOS")
+mcp = MCPServer("EngineeringOS")
 @mcp.tool()
 def list_domains() -> list[str]:
     """List engineering domains in the role atlas."""
