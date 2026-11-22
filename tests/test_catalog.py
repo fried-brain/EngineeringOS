@@ -27,7 +27,13 @@ def test_mcp_server_imports_under_sdk_v2():
 
 
 def test_vercel_asgi_app_exposes_mcp_and_health_routes():
-    from api.index import app
+    import importlib.util
+    from pathlib import Path
+    entry = Path(__file__).resolve().parents[1] / "api" / "index.py"
+    spec = importlib.util.spec_from_file_location("engineeringos_vercel_entry", entry)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    app = module.app
     paths = {route.path for route in app.routes}
     assert "/mcp" in paths
     assert "/health" in paths
