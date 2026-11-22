@@ -47,7 +47,7 @@ def test_vercel_asgi_app_exposes_mcp_and_health_routes():
     assert "/api/mcp" in paths
     assert "/api/health" in paths
 
-def test_mcp_initialize_and_tools_list_over_asgi():
+def test_mcp_initialize_tools_list_and_tool_call_over_asgi():
     from starlette.testclient import TestClient
 
     module = load_vercel_app()
@@ -57,6 +57,10 @@ def test_mcp_initialize_and_tools_list_over_asgi():
         "accept": "application/json, text/event-stream",
     }
     with TestClient(module.app) as client:
+        health = client.get("/api/health", headers={"host": base_headers["host"]})
+        assert health.status_code == 200
+        assert health.json()["role_count"] == 276
+
         initialized = client.post(
             "/api/mcp",
             headers={**base_headers, "content-type": "application/json"},
@@ -72,16 +76,16 @@ def test_mcp_initialize_and_tools_list_over_asgi():
             },
         )
         assert initialized.status_code == 200, initialized.text
-        initialize_result = initialized.json()["result"]
-        protocol_version = initialize_result["protocolVersion"]
+        protocol_version = initialized.json()["result"]["protocolVersion"]
 
+        protocol_headers = {
+            **base_headers,
+            "content-type": "application/json",
+            "MCP-Protocol-Version": protocol_version,
+        }
         tools_response = client.post(
             "/api/mcp",
-            headers={
-                **base_headers,
-                "content-type": "application/json",
-                "MCP-Protocol-Version": protocol_version,
-            },
+            headers=protocol_headers,
             json={"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}},
         )
         assert tools_response.status_code == 200, tools_response.text
@@ -93,3 +97,19 @@ def test_mcp_initialize_and_tools_list_over_asgi():
             "create_role_learning_path",
             "get_role_capstone",
         } <= tool_names
+
+        search_response = client.post(
+            "/api/mcp",
+            headers=protocol_headers,
+            json={
+                "jsonrpc": "2.0",
+                "id": 3,
+                "method": "tools/call",
+                "params": {
+                    "name": "search_engineering_roles",
+                    "arguments": {"query": "LLM"},
+                },
+            },
+        )
+        assert search_response.status_code == 200, search_response.text
+        assert "llm-engineer" in search_response.text
