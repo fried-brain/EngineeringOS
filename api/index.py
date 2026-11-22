@@ -40,7 +40,7 @@ def get_role_capstone(role_id: str) -> dict:
         raise ValueError(f"Unknown role_id: {role_id}")
     return {"role": role["title"], "capstone": role["capstone"], "competencies": role["core_competencies"]}
 
-@mcp.custom_route("/health", methods=["GET"])
+@mcp.custom_route("/api/health", methods=["GET"])
 async def health(_: Request) -> Response:
     return JSONResponse({"status": "ok", "service": "EngineeringOS", "role_count": load_catalog()["role_count"]})
 
@@ -50,4 +50,4 @@ security = TransportSecuritySettings(
     allowed_hosts=["engineeringos-alonefxs-projects.vercel.app", "engineeringos-alonefxs-projects.vercel.app:*", "engineeringos-git-main-alonefxs-projects.vercel.app", "engineeringos-git-main-alonefxs-projects.vercel.app:*"],
     allowed_origins=["https://chatgpt.com", "https://chat.openai.com"],
 )
-app = mcp.streamable_http_app(transport_security=security, json_response=True, stateless_http=True)
+app = mcp.streamable_http_app(streamable_http_path="/api/mcp", transport_security=security, json_response=True, stateless_http=True)
