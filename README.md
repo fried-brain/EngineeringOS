@@ -18,7 +18,7 @@ Requires Python 3.11+.
     pytest
     python -m engineeringos.server
 
-The MCP server uses Streamable HTTP and binds to localhost by default. Configure ENGINEERINGOS_HOST and ENGINEERINGOS_PORT. Do not expose it publicly without HTTPS, authentication, authorization, rate limits and a security review.
+The The Vercel deployment exposes Streamable HTTP at /api/mcp and a health check at /api/health. For a self-hosted server, configure ENGINEERINGOS_HOST and ENGINEERINGOS_PORT. Do not expose it publicly without HTTPS, authentication, authorization, rate limits and a security review.
 
 ## ChatGPT
 Use chatgpt/ENGINEERINGOS.md as the portable mentor instruction set. For tool access, deploy the MCP server to a trusted HTTPS host and connect it through a supported ChatGPT MCP/app integration. A GitHub repository cannot install itself into ChatGPT; account/workspace support and user/admin approval may be required. See docs/CHATGPT-INTEGRATION.md.
