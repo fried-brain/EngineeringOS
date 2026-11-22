@@ -130,3 +130,19 @@ def test_learning_path_contains_role_specific_deliverables_and_assessment():
     assert set(role["core_competencies"]) <= covered
     assert plan["phases"][-1]["deliverable"] == role["capstone"]
     assert all(phase["assessment_criteria"] for phase in plan["phases"])
+
+
+def test_learning_paths_generate_for_every_role_and_level():
+    for role in load_catalog()["roles"]:
+        for level in ("beginner", "intermediate", "advanced"):
+            plan = build_learning_path(role["id"], level, 5)
+            assert plan["role_id"] == role["id"]
+            assert sum(phase["weeks"] for phase in plan["phases"]) == plan["estimated_weeks"]
+            covered = {
+                competency
+                for phase in plan["phases"]
+                for competency in phase["focus_competencies"]
+            }
+            assert set(role["core_competencies"]) <= covered
+            assert plan["phases"][-1]["deliverable"] == role["capstone"]
+            assert sum(item["share_percent"] for item in plan["weekly_rhythm"]) == 100
