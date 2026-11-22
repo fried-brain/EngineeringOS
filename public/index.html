@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090d18">
+<meta name="description" content="EngineeringOS — a structured mastery system for every engineering discipline. Explore 276 roles, build learning paths and prove your skills through projects.">
+<title>EngineeringOS — Engineering, mastered.</title>
+<style>
+:root{color-scheme:dark;--bg:#090d18;--panel:#101827;--panel2:#141f31;--line:#253247;--muted:#94a3b8;--text:#edf3ff;--cyan:#69e0dc;--blue:#7da7ff;--gold:#f4c77b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#172c48 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}.shell{max-width:1240px;margin:auto;padding:0 28px}.topbar{height:76px;border-bottom:1px solid #ffffff12;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:12px;align-items:center;font-weight:750;letter-spacing:.04em}.mark{width:34px;height:34px;border:1px solid #69e0dc88;border-radius:10px;display:grid;place-items:center;color:var(--cyan);font-size:18px;background:#69e0dc12}.brand small{display:block;color:var(--muted);font-weight:500;letter-spacing:.12em;font-size:9px}.nav{display:flex;gap:22px;color:#b5c2d5;font-size:13px}.nav a:hover{color:var(--cyan)}.status{font-size:11px;color:var(--cyan);border:1px solid #69e0dc55;padding:6px 10px;border-radius:99px;background:#69e0dc0c}
+.hero{padding:66px 0 38px;max-width:850px}.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.03;letter-spacing:-.055em;margin:18px 0}.hero h1 span{color:var(--cyan)}.hero p{color:#aab8cb;font-size:17px;max-width:670px;margin:0}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0 48px}.metric{background:linear-gradient(145deg,#142136,#0e1726);border:1px solid var(--line);border-radius:14px;padding:18px}.metric strong{font-size:27px;letter-spacing:-.04em;display:block}.metric span{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{font-size:24px;letter-spacing:-.03em;margin:0}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.workspace{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(300px,.7fr);gap:18px;align-items:start}.panel{background:#0f1827;border:1px solid var(--line);border-radius:18px;overflow:hidden}.panel-head{padding:18px 20px;border-bottom:1px solid var(--line)}.controls{display:grid;grid-template-columns:1fr 190px;gap:10px;margin-top:14px}.field{width:100%;background:#0a1220;color:var(--text);border:1px solid #2b3b52;border-radius:10px;padding:12px 13px;outline:none}.field:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #69e0dc18}.count{color:var(--muted);font-size:12px;margin-top:12px}.role-list{max-height:650px;overflow:auto;padding:8px}.role{width:100%;display:block;text-align:left;background:transparent;border:1px solid transparent;color:var(--text);padding:13px;border-radius:12px;cursor:pointer}.role:hover,.role.active{background:#18263a;border-color:#314761}.role strong{display:block;font-size:14px}.role small{color:var(--muted);font-size:11px}.tag{display:inline-block;margin-top:7px;color:#8ddbd6;background:#69e0dc12;border:1px solid #69e0dc30;border-radius:99px;padding:2px 8px;font-size:10px}
+.detail{padding:22px;position:sticky;top:18px}.detail .placeholder{padding:36px 8px;text-align:center;color:var(--muted)}.detail h3{font-size:24px;line-height:1.15;margin:8px 0}.detail p{color:#afbdcf;font-size:13px}.detail h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:22px 0 8px}.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{font-size:11px;border:1px solid #33445c;border-radius:7px;padding:5px 8px;color:#c8d6e8}.capstone{background:#172338;border:1px solid #344962;border-radius:12px;padding:14px;font-size:13px;color:#dce8f7}.primary{background:var(--cyan);border:0;color:#061516;border-radius:10px;padding:11px 15px;font-weight:750;cursor:pointer}.primary:hover{filter:brightness(1.08)}.secondary{background:#1a2a40;color:#dce9f7;border:1px solid #3a4d66;border-radius:10px;padding:10px 13px;cursor:pointer}.full{width:100%;margin-top:18px}
+.path{margin-top:18px}.path-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px}.phase{border-left:2px solid var(--cyan);padding:2px 0 14px 14px;margin:15px 0}.phase h5{margin:0 0 5px;font-size:14px}.phase p,.phase li{font-size:12px;color:#afbdcf}.phase ul{padding-left:17px;margin:8px 0}
+.footer{border-top:1px solid #ffffff12;margin-top:58px;padding:24px 0 38px;color:#78889e;font-size:11px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.footer a{color:#9dc8cb}
+.empty{padding:28px;text-align:center;color:var(--muted)}.loading{color:var(--muted);padding:18px}.hidden{display:none!important}
+@media(max-width:800px){.shell{padding:0 17px}.nav{display:none}.hero{padding:46px 0 26px}.metrics{grid-template-columns:repeat(2,1fr);margin-bottom:32px}.workspace{grid-template-columns:1fr}.detail{position:static}.role-list{max-height:440px}.controls{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="shell topbar">
+ <a class="brand" href="/"><span class="mark">E</span><span>ENGINEERINGOS<small>THE ENGINEERING MASTERY SYSTEM</small></span></a>
+ <nav class="nav"><a href="#explore">Explore roles</a><a href="#how">Learning paths</a><a href="/api/health">System status</a></nav>
+ <span class="status" id="system-status">● CONNECTING</span>
+</header>
+<main class="shell">
+ <section class="hero">
+  <div class="eyebrow">A map of the engineering universe</div>
+  <h1>Build the skills.<br><span>Master the craft.</span></h1>
+  <p>Explore engineering careers across software, AI, systems, security, hardware, games and beyond. Choose a role, follow a structured path, and build evidence of what you can do.</p>
+ </section>
+ <section class="metrics" aria-label="EngineeringOS catalogue statistics">
+  <div class="metric"><strong id="role-total">276</strong><span>Engineering roles</span></div>
+  <div class="metric"><strong id="domain-total">16</strong><span>Knowledge domains</span></div>
+  <div class="metric"><strong>3</strong><span>Learning levels</span></div>
+  <div class="metric"><strong>1</strong><span>Unified mastery system</span></div>
+ </section>
+ <section id="explore">
+  <div class="section-head"><div><div class="eyebrow">01 / Discover</div><h2>Find your engineering role</h2><p>Search the catalogue by title, domain or competency.</p></div></div>
+  <div class="workspace">
+   <div class="panel">
+    <div class="panel-head">
+     <div class="controls"><input id="search" class="field" type="search" placeholder="Try: AI engineer, robotics, Python, security…" autocomplete="off"><select id="domain" class="field"><option value="">All domains</option></select></div>
+     <div class="count" id="result-count">Loading role catalogue…</div>
+    </div>
+    <div class="role-list" id="role-list"><div class="loading">Loading the engineering atlas…</div></div>
+   </div>
+   <aside class="panel detail" id="detail">
+    <div class="placeholder"><div class="eyebrow">Your next chapter</div><h3>Select a role</h3><p>Choose any role to inspect its mission, competencies and capstone project.</p></div>
+   </aside>
+  </div>
+ </section>
+ <section id="how" style="padding-top:48px">
+  <div class="section-head"><div><div class="eyebrow">02 / Build</div><h2>Turn a role into a learning path</h2><p>Generate a staged plan with practice, deliverables and assessment criteria.</p></div></div>
+  <div class="panel" style="padding:22px">
+   <p style="color:#b2c1d4;margin-top:0;font-size:13px">Select a role above, then choose your starting level and weekly study time. EngineeringOS will assemble a role-specific plan.</p>
+   <div id="path-placeholder" class="empty">Choose a role to unlock its learning path.</div>
+   <div id="path-result" class="hidden"></div>
+  </div>
+ </section>
+ <section style="padding:35px 0 0">
+  <div class="section-head"><div><div class="eyebrow">03 / Prove</div><h2>Mastery through evidence</h2><p>Progress should be demonstrated, not merely declared.</p></div></div>
+  <div class="metrics" style="margin:0">
+   <div class="metric"><strong>Learn</strong><span>Foundations and concepts</span></div>
+   <div class="metric"><strong>Build</strong><span>Guided and independent labs</span></div>
+   <div class="metric"><strong>Review</strong><span>Tests and design critique</span></div>
+   <div class="metric"><strong>Prove</strong><span>Capstone and portfolio</span></div>
+  </div>
+ </section>
+</main>
+<footer class="shell footer"><span>ENGINEERINGOS · A living engineering role atlas</span><span><a href="https://github.com/fried-brain/EngineeringOS">Open-source project</a> · <a href="/api/health">API status</a> · <a href="/api/mcp">MCP endpoint</a></span></footer>
+<script>
+const $=s=>document.querySelector(s);let roles=[],domains=[],selected=null,debounce;
+const escapeHtml=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+async function loadCatalog(){
+ try{
+  const r=await fetch("/api/catalog");if(!r.ok)throw new Error("Catalogue API returned "+r.status);
+  const data=await r.json();roles=data.roles;domains=data.domains;
+  $("#role-total").textContent=data.role_count;$("#domain-total").textContent=domains.length;
+  $("#system-status").textContent="● SYSTEM ONLINE";
+  $("#system-status").style.color="var(--cyan)";
+  $("#domain").innerHTML='<option value="">All domains</option>'+domains.map(d=>'<option value="'+escapeHtml(d)+'">'+escapeHtml(d)+'</option>').join("");
+  renderRoles(roles);
+ }catch(e){$("#system-status").textContent="● API UNAVAILABLE";$("#role-list").innerHTML='<div class="empty">The role catalogue could not be loaded. Please refresh in a moment.</div>';$("#result-count").textContent=e.message;}
+}
+function renderRoles(items){
+ $("#result-count").textContent=items.length+" roles found";
+ $("#role-list").innerHTML=items.length?items.map(r=>'<button class="role '+(selected?.id===r.id?"active":"")+'" data-id="'+escapeHtml(r.id)+'"><strong>'+escapeHtml(r.title)+'</strong><small>'+escapeHtml(r.domain)+'</small><br><span class="tag">'+escapeHtml(r.core_competencies?.length||0)+' core competencies</span></button>').join(""):'<div class="empty">No matching roles. Try a broader search.</div>';
+ document.querySelectorAll(".role").forEach(b=>b.addEventListener("click",()=>selectRole(b.dataset.id)));
+}
+async function filterRoles(){
+ const q=$("#search").value.trim(),d=$("#domain").value;
+ try{const url="/api/catalog?q="+encodeURIComponent(q)+"&domain="+encodeURIComponent(d);const r=await fetch(url);const data=await r.json();renderRoles(data.roles);}
+ catch{const ql=q.toLowerCase();renderRoles(roles.filter(x=>(!d||x.domain===d)&&JSON.stringify(x).toLowerCase().includes(ql)));}
+}
+async function selectRole(id){
+ try{const r=await fetch("/api/role?id="+encodeURIComponent(id));if(!r.ok)throw new Error("Role not found");selected=await r.json();renderRoles(roles.filter(x=>x.id===$("#search").value.trim().toLowerCase()||true).filter(x=>true));showDetail();$("#path-placeholder").classList.add("hidden");$("#path-result").classList.add("hidden");}
+ catch(e){$("#detail").innerHTML='<div class="empty">'+escapeHtml(e.message)+'</div>';}
+}
+function showDetail(){
+ const r=selected;
+ $("#detail").innerHTML='<div class="eyebrow">'+escapeHtml(r.domain)+'</div><h3>'+escapeHtml(r.title)+'</h3><p>'+escapeHtml(r.mission)+'</p><h4>Core competencies</h4><div class="chips">'+r.core_competencies.map(x=>'<span class="chip">'+escapeHtml(x)+'</span>').join("")+'</div><h4>Capstone project</h4><div class="capstone">'+escapeHtml(r.capstone)+'</div><button class="primary full" id="make-path">Build my learning path ↗</button>';
+ $("#make-path").addEventListener("click",()=>{document.querySelector("#how").scrollIntoView({behavior:"smooth"});showPathControls();});
+}
+function showPathControls(){
+ $("#path-result").classList.add("hidden");
+ $("#path-placeholder").classList.remove("hidden");
+ $("#path-placeholder").innerHTML='<div style="max-width:520px;margin:auto;text-align:left"><div class="path-controls"><label style="font-size:12px;color:var(--muted)">Starting level<select id="level" class="field"><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></label><label style="font-size:12px;color:var(--muted)">Hours per week<input id="hours" class="field" type="number" min="1" max="60" value="7"></label></div><button class="primary full" id="generate">Generate learning path</button></div>';
+ $("#generate").addEventListener("click",generatePath);
+}
+async function generatePath(){
+ const btn=$("#generate"),level=$("#level").value,hours=$("#hours").value;
+ btn.disabled=true;btn.textContent="Building your path…";
+ try{
+  const r=await fetch("/api/learning-path?role_id="+encodeURIComponent(selected.id)+"&level="+level+"&hours_per_week="+hours);
+  const p=await r.json();if(!r.ok)throw new Error(p.error||"Could not create path");
+  $("#path-placeholder").classList.add("hidden");$("#path-result").classList.remove("hidden");
+  $("#path-result").innerHTML='<div class="eyebrow">'+escapeHtml(p.role)+' / '+escapeHtml(p.level)+'</div><h3 style="font-size:25px;margin:8px 0">'+p.estimated_weeks+' weeks · '+p.estimated_hours+' study hours</h3><p style="color:var(--muted);font-size:13px">Suggested weekly rhythm: '+p.weekly_rhythm.map(x=>escapeHtml(x.activity)+' ('+x.share_percent+'%)').join(' · ')+'</p>'+p.phases.map((x,i)=>'<div class="phase"><h5>Phase '+(i+1)+': '+escapeHtml(x.phase)+' · '+x.weeks+' weeks</h5><p>'+escapeHtml(x.outcome)+'</p><div class="chips">'+x.focus_competencies.map(c=>'<span class="chip">'+escapeHtml(c)+'</span>').join("")+'</div><ul>'+x.practice.map(y=>'<li>'+escapeHtml(y)+'</li>').join("")+'</ul><p><b>Deliverable:</b> '+escapeHtml(x.deliverable)+'</p><p><b>Assessment:</b> '+x.assessment_criteria.map(escapeHtml).join(" · ")+'</p></div>').join("")+'<p style="color:var(--muted);font-size:11px">'+escapeHtml(p.note)+'</p>';
+ }catch(e){$("#path-placeholder").classList.remove("hidden");$("#path-placeholder").textContent=e.message;}
+ finally{btn.disabled=false;btn.textContent="Generate learning path";}
+}
+$("#search").addEventListener("input",()=>{clearTimeout(debounce);debounce=setTimeout(filterRoles,180)});
+$("#domain").addEventListener("change",filterRoles);
+loadCatalog();
+</script>
+</body>
+</html>
