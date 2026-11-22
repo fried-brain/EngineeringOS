@@ -3,7 +3,8 @@ import json
 from pathlib import Path
 from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
-CATALOG_PATH = ROOT / "data" / "roles.json"
+PACKAGE_CATALOG_PATH = Path(__file__).resolve().parent / "roles.json"
+CATALOG_PATH = PACKAGE_CATALOG_PATH if PACKAGE_CATALOG_PATH.exists() else ROOT / "data" / "roles.json"
 def load_catalog(path: Path = CATALOG_PATH) -> dict[str, Any]:
     data = json.loads(path.read_text(encoding="utf-8"))
     roles = data.get("roles")
