@@ -146,3 +146,29 @@ def test_learning_paths_generate_for_every_role_and_level():
             assert set(role["core_competencies"]) <= covered
             assert plan["phases"][-1]["deliverable"] == role["capstone"]
             assert sum(item["share_percent"] for item in plan["weekly_rhythm"]) == 100
+
+
+def test_dashboard_rest_endpoints():
+    from starlette.testclient import TestClient
+
+    module = load_vercel_app()
+    with TestClient(module.app) as client:
+        catalog_response = client.get("/api/catalog?q=LLM")
+        assert catalog_response.status_code == 200
+        catalog = catalog_response.json()
+        assert catalog["result_count"] >= 1
+        assert any(role["id"] == "llm-engineer" for role in catalog["roles"])
+
+        role_response = client.get("/api/role?id=llm-engineer")
+        assert role_response.status_code == 200
+        assert role_response.json()["title"] == "LLM Engineer"
+
+        path_response = client.get(
+            "/api/learning-path?role_id=llm-engineer&level=beginner&hours_per_week=7"
+        )
+        assert path_response.status_code == 200
+        assert path_response.json()["role_id"] == "llm-engineer"
+        assert len(path_response.json()["phases"]) == 4
+
+        missing_response = client.get("/api/role?id=not-a-role")
+        assert missing_response.status_code == 404
