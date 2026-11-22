@@ -113,3 +113,20 @@ def test_mcp_initialize_tools_list_and_tool_call_over_asgi():
         )
         assert search_response.status_code == 200, search_response.text
         assert "llm-engineer" in search_response.text
+
+
+def test_learning_path_contains_role_specific_deliverables_and_assessment():
+    role = get_role("llm-engineer")
+    plan = build_learning_path("llm-engineer", "beginner", 7)
+
+    assert len(plan["phases"]) == 4
+    assert sum(phase["weeks"] for phase in plan["phases"]) == plan["estimated_weeks"]
+    assert plan["phases"][0]["focus_competencies"]
+    covered = {
+        competency
+        for phase in plan["phases"]
+        for competency in phase["focus_competencies"]
+    }
+    assert set(role["core_competencies"]) <= covered
+    assert plan["phases"][-1]["deliverable"] == role["capstone"]
+    assert all(phase["assessment_criteria"] for phase in plan["phases"])
