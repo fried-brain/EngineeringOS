@@ -35,5 +35,5 @@ def test_vercel_asgi_app_exposes_mcp_and_health_routes():
     spec.loader.exec_module(module)
     app = module.app
     paths = {route.path for route in app.routes}
-    assert "/mcp" in paths
-    assert "/health" in paths
+    assert "/api/mcp" in paths
+    assert "/api/health" in paths
