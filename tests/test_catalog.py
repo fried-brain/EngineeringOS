@@ -19,3 +19,15 @@ def test_invalid_path_inputs():
     import pytest
     with pytest.raises(KeyError): build_learning_path("missing")
     with pytest.raises(ValueError): build_learning_path("frontend-developer", "expert")
+
+
+def test_mcp_server_imports_under_sdk_v2():
+    from engineeringos.server import mcp
+    assert mcp.name == "EngineeringOS"
+
+
+def test_vercel_asgi_app_exposes_mcp_and_health_routes():
+    from api.index import app
+    paths = {route.path for route in app.routes}
+    assert "/mcp" in paths
+    assert "/health" in paths
