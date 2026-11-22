@@ -42,7 +42,7 @@ async def health(_: Request) -> Response:
 # Vercel terminates TLS and controls the public Host header. Replace this allowlist
 # if the assigned project domain changes.
 security = TransportSecuritySettings(
-    allowed_hosts=["engineeringos.vercel.app", "engineeringos.vercel.app:*"],
+    allowed_hosts=["engineeringos-alonefxs-projects.vercel.app", "engineeringos-alonefxs-projects.vercel.app:*", "engineeringos-git-main-alonefxs-projects.vercel.app", "engineeringos-git-main-alonefxs-projects.vercel.app:*"],
     allowed_origins=["https://chatgpt.com", "https://chat.openai.com"],
 )
 app = mcp.streamable_http_app(transport_security=security, json_response=True, stateless_http=True)
