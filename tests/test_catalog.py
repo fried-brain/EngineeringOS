@@ -23,7 +23,7 @@ def test_invalid_path_inputs():
 
 def test_mcp_server_imports_under_sdk_v2():
     from engineeringos.server import mcp
-    assert mcp.name == "EngineeringOS"
+    assert callable(mcp.tool)
 
 
 def test_vercel_asgi_app_exposes_mcp_and_health_routes():
