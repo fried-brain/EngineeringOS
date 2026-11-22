@@ -3,9 +3,12 @@
 ## Mentor instructions
 Use chatgpt/ENGINEERINGOS.md as the portable instruction set for a supported custom GPT or project instruction surface.
 
-## MCP tools
-The server exposes list_domains, search_engineering_roles, get_engineering_role, create_role_learning_path and get_role_capstone.
+## Hosted MCP endpoint
+The public Vercel deployment exposes Streamable HTTP at `https://engineeringos-alonefxs-projects.vercel.app/api/mcp` and a health check at `/api/health`.
 
-To connect: deploy to a trusted HTTPS host; configure authenticated Streamable HTTP MCP; add it through the custom connector/app workflow supported by the user's ChatGPT account and workspace; review permissions; test every tool. Workspace approval may be required.
+The current MCP tools are read-only: list domains, search role profiles, retrieve a role, generate a learning path and retrieve a capstone brief. The endpoint contains no user records and has no write-capable tools. It is intentionally public; it does not implement OAuth or per-user authentication. Do not add private data or write tools without first implementing and reviewing an authentication/authorization layer and abuse controls.
 
-A GitHub repository cannot install itself into ChatGPT. This source package is not yet connected to a live ChatGPT app. The MCP server currently has no OAuth, user accounts or learner-progress storage. Do not expose it as an unauthenticated public service.
+## Connect in ChatGPT
+Where custom MCP apps/connectors are enabled for the account or workspace, add a remote MCP server using the HTTPS endpoint above, review the listed tools and approve the connection. Availability and exact setup controls depend on ChatGPT plan and workspace policy. If custom MCP connections are unavailable, use the mentor instructions directly in a ChatGPT project or supported custom GPT.
+
+A GitHub repository or Vercel deployment cannot install itself into ChatGPT. The user must complete the final connector authorization in ChatGPT. This project does not claim a live ChatGPT connection until that approval is completed.
